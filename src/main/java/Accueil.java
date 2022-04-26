@@ -32,24 +32,7 @@ public class Accueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		try {
-			HttpClient client = HttpClient.newHttpClient();
-			HttpRequest hr = HttpRequest.newBuilder()
-					.uri(URI.create("http://127.0.0.1:8000/accueil"))
-					.header("Content-type", "application/json")
-					.build();
-			HttpResponse<String> hrep;
-			hrep = client.send(hr, BodyHandlers.ofString());
-			String result = hrep.body();
-			response.getWriter().append(result);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//response.sendRedirect("View/Accueil.jsp");
+		response.sendRedirect("View/index.jsp");
 	}
 
 	/**
