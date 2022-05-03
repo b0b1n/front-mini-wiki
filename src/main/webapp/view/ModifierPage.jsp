@@ -1,6 +1,6 @@
-
+<%-- 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-    
+     --%>
 <!DOCTYPE HTML>
 <!--
 	Future Imperfect by HTML5 UP
@@ -99,7 +99,7 @@
 				<!-- Main -->
 					<div id="main">
 						
-							<form action="../view/edit" method="put">
+							<form  action="edit" method="post" >
 						
 							<input type=text name=id  /></br>
 							<input type=text name=Titre placeholder="Titre"/><br>
