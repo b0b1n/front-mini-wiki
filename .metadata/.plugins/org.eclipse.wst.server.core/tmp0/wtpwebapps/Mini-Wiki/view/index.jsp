@@ -1,7 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML>
 <!--
 	Future Imperfect by HTML5 UP
-	html5up.net | @ajlkn
+	html5up.net | @ajlkn   ../../webapp
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
@@ -9,7 +12,7 @@
 		<title>Future Imperfect by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../resources/assets/css/main.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css" type="text/css"/>
 	</head>
 	<body class="is-preload">
 
@@ -24,8 +27,20 @@
 								<li><a href="#">Lorem</a></li>
 								<li><a href="#">Ipsum</a></li>
 								<li><a href="#">Feugiat</a></li>
-								<li><a href="#">Tempus</a></li>
-								<li><a href="#">Adipiscing</a></li>
+								<c:if test="${ weaker != null }">
+									<c:forEach items="${weaker}" var="w" >
+									 <li>
+									 <div style = color:Grey;">
+									 <b>Welcome <c:out value='${ w.username }'></c:out></b>
+									 </div>
+									 </li>
+									 <li><a href="logout">Déconnecter</a></li>
+									 </c:forEach>
+									 </c:if>
+									 <c:if test="${ weaker == null }">
+								<li><a href="register">Créer un compte</a></li>
+								<li><a href="login">Se connecter</a></li>
+								</c:if>
 							</ul>
 						</nav>
 						<nav class="main">
@@ -39,6 +54,8 @@
 								<li class="menu">
 									<a class="fa-bars" href="#menu">Menu</a>
 								</li>
+								
+								
 							</ul>
 						</nav>
 					</header>
@@ -86,7 +103,11 @@
 						<!-- Actions -->
 							<section>
 								<ul class="actions stacked">
-									<li><a href="#" class="button large fit">Log In</a></li>
+									<li><a href="register" class="button large fit">Créer un compte</a></li>
+								</ul>
+						
+								<ul class="actions stacked">
+									<li><a href="login" class="button large fit">Se Connecter</a></li>
 								</ul>
 							</section>
 
@@ -104,10 +125,10 @@
 									</div>
 									<div class="meta">
 										<time class="published" datetime="2015-11-01">November 1, 2015</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+										<a href="#" class="author"><span class="name">Jane Doe</span><img src="${pageContext.request.contextPath}/resources/images/avatar.jpg" alt="" /></a>
 									</div>
 								</header>
-								<a href="single.html" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+								<a href="single.html" class="image featured"><img src="${pageContext.request.contextPath}/resources/images/pic01.jpg" alt="" /></a>
 								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
 								<footer>
 									<ul class="actions">
@@ -156,10 +177,10 @@
 									</div>
 									<div class="meta">
 										<time class="published" datetime="2015-10-22">October 22, 2015</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+										<a href="#" class="author"><span class="name">Jane Doe</span><img src="${pageContext.request.contextPath}/resources/images/avatar.jpg" alt="" /></a>
 									</div>
 								</header>
-								<a href="single.html" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
+								<a href="single.html" class="image featured"><img src="${pageContext.request.contextPath}/resources/images/pic03.jpg" alt="" /></a>
 								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Cras vehicula tellus eu ligula viverra, ac fringilla turpis suscipit. Quisque vestibulum rhoncus ligula.</p>
 								<footer>
 									<ul class="actions">
@@ -183,7 +204,7 @@
 									</div>
 									<div class="meta">
 										<time class="published" datetime="2015-10-18">October 18, 2015</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+										<a href="#" class="author"><span class="name">Jane Doe</span><img src="../resources/images/avatar.jpg" alt="" /></a>
 									</div>
 								</header>
 
@@ -466,21 +487,21 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 									<h4>Fit</h4>
 									<div class="box alt">
 										<div class="row gtr-uniform">
-											<div class="col-12"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
-											<div class="col-4"><span class="image fit"><img src="images/pic04.jpg" alt="" /></span></div>
-											<div class="col-4"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
-											<div class="col-4"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
-											<div class="col-4"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
-											<div class="col-4"><span class="image fit"><img src="images/pic04.jpg" alt="" /></span></div>
-											<div class="col-4"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
-											<div class="col-4"><span class="image fit"><img src="images/pic05.jpg" alt="" /></span></div>
-											<div class="col-4"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
-											<div class="col-4"><span class="image fit"><img src="images/pic04.jpg" alt="" /></span></div>
+											<div class="col-12"><span class="image fit"><img src="../resources/images/pic02.jpg" alt="" /></span></div>
+											<div class="col-4"><span class="image fit"><img src="../resources/images/pic04.jpg" alt="" /></span></div>
+											<div class="col-4"><span class="image fit"><img src="../resources/images/pic05.jpg" alt="" /></span></div>
+											<div class="col-4"><span class="image fit"><img src="../resources/images/pic06.jpg" alt="" /></span></div>
+											<div class="col-4"><span class="image fit"><img src="../resources/images/pic06.jpg" alt="" /></span></div>
+											<div class="col-4"><span class="image fit"><img src="../resources/images/pic04.jpg" alt="" /></span></div>
+											<div class="col-4"><span class="image fit"><img src="../resources/images/pic05.jpg" alt="" /></span></div>
+											<div class="col-4"><span class="image fit"><img src="../resources/images/pic05.jpg" alt="" /></span></div>
+											<div class="col-4"><span class="image fit"><img src="../resources/images/pic06.jpg" alt="" /></span></div>
+											<div class="col-4"><span class="image fit"><img src="../resources/images/pic04.jpg" alt="" /></span></div>
 										</div>
 									</div>
 									<h4>Left &amp; Right</h4>
-									<p><span class="image left"><img src="images/pic07.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-									<p><span class="image right"><img src="images/pic04.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+									<p><span class="image left"><img src="../resources/images/pic07.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+									<p><span class="image right"><img src="../resources/images/pic04.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
 								</section>
 
 							</article>
@@ -499,7 +520,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 						<!-- Intro -->
 							<section id="intro">
-								<a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>
+								<a href="#" class="logo"><img src="${pageContext.request.contextPath}/resources/images/logo.jpg" alt="" /></a>
 								<header>
 									<h2>Future Imperfect</h2>
 									<p>Another fine responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
@@ -515,9 +536,9 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 											<header>
 												<h3><a href="single.html">Vitae sed condimentum</a></h3>
 												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
+												<a href="#" class="author"><img src="${pageContext.request.contextPath}/resources/images/avatar.jpg" alt="" /></a>
 											</header>
-											<a href="single.html" class="image"><img src="images/pic04.jpg" alt="" /></a>
+											<a href="single.html" class="image"><img src="${pageContext.request.contextPath}/resources/images/pic04.jpg" alt="" /></a>
 										</article>
 
 									<!-- Mini Post -->
@@ -525,9 +546,9 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 											<header>
 												<h3><a href="single.html">Rutrum neque accumsan</a></h3>
 												<time class="published" datetime="2015-10-19">October 19, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
+												<a href="#" class="author"><img src="${pageContext.request.contextPath}/resources/images/avatar.jpg" alt="" /></a>
 											</header>
-											<a href="single.html" class="image"><img src="images/pic05.jpg" alt="" /></a>
+											<a href="single.html" class="image"><img src="${pageContext.request.contextPath}/resources/images/pic05.jpg" alt="" /></a>
 										</article>
 
 									<!-- Mini Post -->
@@ -535,9 +556,9 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 											<header>
 												<h3><a href="single.html">Odio congue mattis</a></h3>
 												<time class="published" datetime="2015-10-18">October 18, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
+												<a href="#" class="author"><img src="${pageContext.request.contextPath}/resources/images/avatar.jpg" alt="" /></a>
 											</header>
-											<a href="single.html" class="image"><img src="images/pic06.jpg" alt="" /></a>
+											<a href="single.html" class="image"><img src="${pageContext.request.contextPath}/resources/images/pic06.jpg" alt="" /></a>
 										</article>
 
 									<!-- Mini Post -->
@@ -545,9 +566,9 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 											<header>
 												<h3><a href="single.html">Enim nisl veroeros</a></h3>
 												<time class="published" datetime="2015-10-17">October 17, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
+												<a href="#" class="author"><img src="${pageContext.request.contextPath}/resources/images/avatar.jpg" alt="" /></a>
 											</header>
-											<a href="single.html" class="image"><img src="images/pic07.jpg" alt="" /></a>
+											<a href="single.html" class="image"><img src="${pageContext.request.contextPath}/resources/images/pic07.jpg" alt="" /></a>
 										</article>
 
 								</div>
@@ -562,7 +583,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 												<h3><a href="single.html">Lorem ipsum fermentum ut nisl vitae</a></h3>
 												<time class="published" datetime="2015-10-20">October 20, 2015</time>
 											</header>
-											<a href="single.html" class="image"><img src="images/pic08.jpg" alt="" /></a>
+											<a href="single.html" class="image"><img src="${pageContext.request.contextPath}/resources/images/pic08.jpg" alt="" /></a>
 										</article>
 									</li>
 									<li>
@@ -571,7 +592,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 												<h3><a href="single.html">Convallis maximus nisl mattis nunc id lorem</a></h3>
 												<time class="published" datetime="2015-10-15">October 15, 2015</time>
 											</header>
-											<a href="single.html" class="image"><img src="images/pic09.jpg" alt="" /></a>
+											<a href="single.html" class="image"><img src="${pageContext.request.contextPath}/resources/images/pic09.jpg" alt="" /></a>
 										</article>
 									</li>
 									<li>
@@ -580,7 +601,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 												<h3><a href="single.html">Euismod amet placerat vivamus porttitor</a></h3>
 												<time class="published" datetime="2015-10-10">October 10, 2015</time>
 											</header>
-											<a href="single.html" class="image"><img src="images/pic10.jpg" alt="" /></a>
+											<a href="single.html" class="image"><img src="${pageContext.request.contextPath}/resources/images/pic10.jpg" alt="" /></a>
 										</article>
 									</li>
 									<li>
@@ -589,7 +610,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 												<h3><a href="single.html">Magna enim accumsan tortor cursus ultricies</a></h3>
 												<time class="published" datetime="2015-10-08">October 8, 2015</time>
 											</header>
-											<a href="single.html" class="image"><img src="images/pic11.jpg" alt="" /></a>
+											<a href="single.html" class="image"><img src="${pageContext.request.contextPath}/resources/images/pic11.jpg" alt="" /></a>
 										</article>
 									</li>
 									<li>
@@ -598,7 +619,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 												<h3><a href="single.html">Congue ullam corper lorem ipsum dolor</a></h3>
 												<time class="published" datetime="2015-10-06">October 7, 2015</time>
 											</header>
-											<a href="single.html" class="image"><img src="images/pic12.jpg" alt="" /></a>
+											<a href="single.html" class="image"><img src="${pageContext.request.contextPath}/resources/images/pic12.jpg" alt="" /></a>
 										</article>
 									</li>
 								</ul>
@@ -630,11 +651,11 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			</div>
 
 		<!-- Scripts -->
-			<script src="../resources/assets/js/jquery.min.js"></script>
-			<script src="../resources/assets/js/browser.min.js"></script>
-			<script src="../resources/assets/js/breakpoints.min.js"></script>
-			<script src="../resources/assets/js/util.js"></script>
-			<script src="../resources/assets/js/main.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery.min.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/browser.min.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/breakpoints.min.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/util.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
 
 	</body>
 </html>
