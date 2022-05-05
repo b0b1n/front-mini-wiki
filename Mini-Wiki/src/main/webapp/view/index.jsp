@@ -15,7 +15,14 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css" type="text/css"/>
 	</head>
 	<body class="is-preload">
-
+<!-- 
+	Recuperation des posts 
+	-->
+	<c:forEach items="${ posts }" var="e">
+		<tr>
+			<td>${ e.Titre.toString().substring(1, e.Titre.toString().length()-1) }</td>
+		</tr>
+	</c:forEach>
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -31,7 +38,7 @@
 									<c:forEach items="${weaker}" var="w" >
 									 <li>
 									 <div style = color:Grey;">
-									 <b>Welcome <c:out value='${ w.username }'></c:out></b>
+									 <b>Welcome <c:out value='${ w.username.toString().substring(1, e.Titre.toString().length()-1) }'></c:out></b>
 									 </div>
 									 </li>
 									 <li><a href="logout">Déconnecter</a></li>
