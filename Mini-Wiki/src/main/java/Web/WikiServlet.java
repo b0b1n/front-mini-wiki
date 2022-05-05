@@ -10,10 +10,12 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 
 import Model.JsonClient;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonReader;
 import jakarta.servlet.ServletException;
@@ -51,6 +53,14 @@ public class WikiServlet extends HttpServlet {
 			case "/list":
 
 				// request.setAttribute("weaker", weaker);
+				String mesPosts = jc.get("http://127.0.0.1:8000/accueil");
+
+				JsonReader reader = Json.createReader(new StringReader(mesPosts));
+				JsonArray arrJson = reader.readArray().asJsonArray();
+
+				request.setAttribute("posts", arrJson);
+				// System.out.println(arrJson.);
+
 				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
 				// response.sendRedirect("/Front/View/index.jsp");
 				break;
@@ -183,9 +193,8 @@ public class WikiServlet extends HttpServlet {
 				break;
 			case "/add":
 
-				if (request.getParameter("Titre") != null
-						&& request.getParameter("Thematique") != null && request.getParameter("Description") != null
-						&& request.getParameter("Contenu") != null) {
+				if (request.getParameter("Titre") != null && request.getParameter("Thematique") != null
+						&& request.getParameter("Description") != null && request.getParameter("Contenu") != null) {
 					JsonObjectBuilder job1 = Json.createObjectBuilder();
 					job1.add("Titre", request.getParameter("Titre"));
 					job1.add("Thematique", request.getParameter("Thematique"));
@@ -193,10 +202,10 @@ public class WikiServlet extends HttpServlet {
 					job1.add("Contenu", request.getParameter("Contenu"));
 					job1.add("Media", request.getParameter("Media"));
 					System.out.println(job1.build().toString());
-					jc.post("http://127.0.0.1:8000/api/pages/" , job1.build().toString());
+					jc.post("http://127.0.0.1:8000/api/pages/", job1.build().toString());
 
 					response.sendRedirect("list");
-					} 
+				}
 
 				break;
 			case "/edit":
