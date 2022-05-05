@@ -38,7 +38,8 @@ import java.io.IOException;
 				"/register",
 				"/logout",
 				"/rewatch",
-				"/userPage"
+				"/userPage",
+				"/edit"
 		})
 public class WikiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -97,6 +98,9 @@ public class WikiServlet extends HttpServlet {
 					break;
 				case"/rewatch":
 					this.getServletContext().getRequestDispatcher("/view/Rematch.jsp").forward(request, response);
+					break;
+				case"/edit":
+					this.getServletContext().getRequestDispatcher("/view/ModifierPage.jsp").forward(request, response);
 					break;
 					
 			}
@@ -181,7 +185,22 @@ public class WikiServlet extends HttpServlet {
 				}
 				}
 				break;
-			
+			case "/edit":
+				
+				if (request.getParameter("id") != null && request.getParameter("Titre") != null && request.getParameter("Thematique") != null && request.getParameter("Description") != null && request.getParameter("Contenu") != null) {
+					JsonObjectBuilder job = Json.createObjectBuilder();
+					job.add("Titre", request.getParameter("Titre"));
+					job.add("Thematique", request.getParameter("Thematique"));
+					job.add("Description", request.getParameter("Description"));
+					job.add("Contenu", request.getParameter("Contenu"));
+					System.out.println(job.build().toString());
+					jc.put("http://127.0.0.1:8000/api/pages/" + request.getParameter("id"), job.build().toString());
+					
+					response.sendRedirect("list");
+				}
+				
+				break;
+		
 			}
 			}catch (InterruptedException e) {
 				e.printStackTrace();

@@ -1,6 +1,6 @@
-<%-- 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-     --%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML>
 <!--
 	Future Imperfect by HTML5 UP
@@ -12,7 +12,7 @@
 		<title>Single - Future Imperfect by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../resources/assets/css/main.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
 	</head>
 	<body class="single is-preload">
 
@@ -103,7 +103,7 @@
 						
 							<input type=text name=id  /></br>
 							<input type=text name=Titre placeholder="Titre"/><br>
-							<input type=text name=Thematiques placeholder="Thematiques" /><br>
+							<input type=text name=Thematique placeholder="Thematiques" /><br>
 							<input type=text name=Description placeholder="Description"  /><br>
 							<input type=text name=Contenu placeholder="Contenu" /><br>
 							<input type=submit value="Modifier" />
@@ -128,11 +128,11 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="../resources/assets/js/jquery.min.js"></script>
-			<script src="../resources/assets/js/browser.min.js"></script>
-			<script src="../resources/assets/js/breakpoints.min.js"></script>
-			<script src="../resources/assets/js/util.js"></script>
-			<script src="../resources/assets/js/main.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery.min.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/browser.min.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/breakpoints.min.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/util.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
 
 	</body>
 </html>
