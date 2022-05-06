@@ -59,7 +59,6 @@ public class WikiServlet extends HttpServlet {
 				JsonArray arrJson = reader.readArray().asJsonArray();
 
 				request.setAttribute("posts", arrJson);
-				// System.out.println(arrJson.);
 
 				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
 				// response.sendRedirect("/Front/View/index.jsp");
