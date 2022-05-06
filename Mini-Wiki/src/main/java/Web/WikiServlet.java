@@ -31,7 +31,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/edit", "/add" })
+@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/edit", "/add","/edit/*" })
 public class WikiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -100,6 +100,23 @@ public class WikiServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/view/Rematch.jsp").forward(request, response);
 				break;
 			case "/edit":
+				String id = request.getPathInfo().toString().substring(1,request.getPathInfo().length());
+				System.out.println(id);
+				
+
+
+				// request.setAttribute("weaker", weaker);
+				String mesPosts1 = jc.get("http://127.0.0.1:8000/accueil");
+
+				JsonReader reader1 = Json.createReader(new StringReader(mesPosts1));
+				JsonArray arrJson1 = reader1.readArray().asJsonArray();
+						
+				for(int i=0; i<arrJson1.size();i++) {
+					if(arrJson1.getJsonObject(i).getString("_id").equals(id)) {
+				//		request.setAttribute("Titre", arrJson1.getJsonObject(j).getString("Titre"));
+						request.setAttribute("post", arrJson1.getJsonObject(i));
+					}
+				}
 				this.getServletContext().getRequestDispatcher("/view/ModifierPage.jsp").forward(request, response);
 				break;
 			case "/add":

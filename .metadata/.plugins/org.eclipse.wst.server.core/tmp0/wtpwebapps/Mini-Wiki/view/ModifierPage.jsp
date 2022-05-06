@@ -101,12 +101,14 @@
 						
 							<form  action="edit" method="post" >
 						
-							<input type=text name=id  /></br>
-							<input type=text name=Titre placeholder="Titre"/><br>
-							<input type=text name=Thematique placeholder="Thematiques" /><br>
-							<input type=text name=Description placeholder="Description"  /><br>
-							<input type=text name=Contenu placeholder="Contenu" /><br>
+							<input type=text name=Titre placeholder="Titre" value=${post.Titre}/><br>
+							<input type=text name=Thematique placeholder="Thematiques" value=${post.Thematique} /><br>
+							<input type=text name=Description placeholder="Description" value=${post.Description} /><br>
+							<input type=text name=Contenu placeholder="Contenu" value=${post.Contenu} /><br>
+							<input type=text name=Media placeholder="Media" value=${post.Media} /><br>
+							<input type="reset" value="Annuler" />
 							<input type=submit value="Modifier" />
+							
 						
 						</form>
 						
