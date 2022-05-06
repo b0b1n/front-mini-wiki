@@ -367,7 +367,6 @@
 						href="http://unsplash.com">Unsplash</a>.
 				</p>
 			</section>
-
 		</section>
 
 	</div>

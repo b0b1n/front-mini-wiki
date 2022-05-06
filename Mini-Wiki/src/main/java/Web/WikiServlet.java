@@ -31,7 +31,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/edit", "/add" })
+@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/edit", "/add","/edit/*" })
 public class WikiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -99,6 +99,24 @@ public class WikiServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/view/Rematch.jsp").forward(request, response);
 				break;
 			case "/edit":
+				String id = request.getPathInfo().toString().substring(1,request.getPathInfo().length());
+				System.out.println(id);
+				
+
+
+				// request.setAttribute("weaker", weaker);
+				String mesPosts1 = jc.get("http://127.0.0.1:8000/accueil");
+
+				JsonReader reader1 = Json.createReader(new StringReader(mesPosts1));
+				JsonArray arrJson1 = reader1.readArray().asJsonArray();
+						
+				for(int i=0; i<arrJson1.size();i++) {
+					if(arrJson1.getJsonObject(i).getString("_id").equals(id)) {
+				//		request.setAttribute("Titre", arrJson1.getJsonObject(j).getString("Titre"));
+						request.setAttribute("post", arrJson1.getJsonObject(i));
+				//		request.setAttribute("myid", arrJson1.getJsonObject(i).getString("_id"));
+					}
+				}
 				this.getServletContext().getRequestDispatcher("/view/ModifierPage.jsp").forward(request, response);
 				break;
 			case "/add":
@@ -208,11 +226,13 @@ public class WikiServlet extends HttpServlet {
 
 				break;
 			case "/edit":
-
-				if (request.getParameter("id") != null && request.getParameter("Titre") != null
+				System.out.println("toto");
+				if ( request.getParameter("Titre") != null
 						&& request.getParameter("Thematique") != null && request.getParameter("Description") != null
 						&& request.getParameter("Contenu") != null) {
+					System.out.println("toto11");
 					JsonObjectBuilder job = Json.createObjectBuilder();
+					job.add("_id", request.getParameter("id"));
 					job.add("Titre", request.getParameter("Titre"));
 					job.add("Thematique", request.getParameter("Thematique"));
 					job.add("Description", request.getParameter("Description"));
@@ -221,7 +241,8 @@ public class WikiServlet extends HttpServlet {
 					System.out.println(job.build().toString());
 					jc.put("http://127.0.0.1:8000/api/pages/" + request.getParameter("id"), job.build().toString());
 
-					response.sendRedirect("list");
+					this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
+			//		response.sendRedirect("/list");
 				}
 
 				break;
