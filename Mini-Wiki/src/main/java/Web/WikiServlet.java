@@ -115,6 +115,7 @@ public class WikiServlet extends HttpServlet {
 					if(arrJson1.getJsonObject(i).getString("_id").equals(id)) {
 				//		request.setAttribute("Titre", arrJson1.getJsonObject(j).getString("Titre"));
 						request.setAttribute("post", arrJson1.getJsonObject(i));
+				//		request.setAttribute("myid", arrJson1.getJsonObject(i).getString("_id"));
 					}
 				}
 				this.getServletContext().getRequestDispatcher("/view/ModifierPage.jsp").forward(request, response);
@@ -226,11 +227,13 @@ public class WikiServlet extends HttpServlet {
 
 				break;
 			case "/edit":
-
-				if (request.getParameter("id") != null && request.getParameter("Titre") != null
+				System.out.println("toto");
+				if ( request.getParameter("Titre") != null
 						&& request.getParameter("Thematique") != null && request.getParameter("Description") != null
 						&& request.getParameter("Contenu") != null) {
+					System.out.println("toto11");
 					JsonObjectBuilder job = Json.createObjectBuilder();
+					job.add("_id", request.getParameter("id"));
 					job.add("Titre", request.getParameter("Titre"));
 					job.add("Thematique", request.getParameter("Thematique"));
 					job.add("Description", request.getParameter("Description"));
@@ -239,7 +242,8 @@ public class WikiServlet extends HttpServlet {
 					System.out.println(job.build().toString());
 					jc.put("http://127.0.0.1:8000/api/pages/" + request.getParameter("id"), job.build().toString());
 
-					response.sendRedirect("list");
+					this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
+			//		response.sendRedirect("/list");
 				}
 
 				break;

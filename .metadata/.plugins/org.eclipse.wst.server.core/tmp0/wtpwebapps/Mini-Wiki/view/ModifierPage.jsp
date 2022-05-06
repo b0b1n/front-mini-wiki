@@ -100,7 +100,7 @@
 					<div id="main">
 						
 							<form  action="edit" method="post" >
-						
+						    <input type=text name=id placeholder="id" value=${post.getString("_id")}/><br>
 							<input type=text name=Titre placeholder="Titre" value=${post.Titre}/><br>
 							<input type=text name=Thematique placeholder="Thematiques" value=${post.Thematique} /><br>
 							<input type=text name=Description placeholder="Description" value=${post.Description} /><br>
