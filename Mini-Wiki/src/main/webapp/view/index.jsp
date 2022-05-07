@@ -64,7 +64,7 @@
 				<section>
 					<li>
 						<div style="color: Grey;">
-							<b>Bonjour <i color="black">${ w.username.toString().substring(1, e.Titre.toString().length()-1) }</i>
+							<b>Bonjour <i color="black">${ w.username}</i>
 							</b>
 						</div>
 					</li>

@@ -80,8 +80,22 @@ public class WikiServlet extends HttpServlet {
 				JsonArray weaker = jr.readArray();
 				System.out.println("weaker" + weaker);
 				request.setAttribute("weaker", weaker);
-				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
+				// request.setAttribute("weaker", weaker);
+				String mesPosts2 = jc.get("http://127.0.0.1:8000/accueil");
+				String mesThematiques2 = jc.get("http://127.0.0.1:8000/api/them");
 
+				JsonReader Preader2 = Json.createReader(new StringReader(mesPosts2));
+				JsonReader Treader2 = Json.createReader(new StringReader(mesThematiques2));
+
+				JsonArray arrJson12 = Preader2.readArray().asJsonArray();
+				JsonArray arrJson22 = Treader2.readArray().asJsonArray();
+
+				
+				request.setAttribute("posts", arrJson12);
+				request.setAttribute("thematiques", arrJson22);
+				// System.out.println(arrJson.);
+
+				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
 				break;
 			case "/register":
 				this.getServletContext().getRequestDispatcher("/view/Register.jsp").forward(request, response);
@@ -160,7 +174,7 @@ public class WikiServlet extends HttpServlet {
 
 				request.setAttribute("posts", arrJson1sA);
 				request.setAttribute("thematiques", arrJson2sA);
-				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/list").forward(request, response);
 
 				break;
 				
@@ -209,6 +223,7 @@ public class WikiServlet extends HttpServlet {
 							+ request.getParameter("password"));
 					System.out.println(request.getParameter("login"));
 					System.out.println("----->" + jj);
+					
 					if (jj.equals("")) {
 						request.setAttribute("msg", "Email or Password are wrong!");
 						this.getServletContext().getRequestDispatcher("/view/Login.jsp").forward(request, response);
