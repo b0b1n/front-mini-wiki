@@ -46,7 +46,8 @@
 				<ul>
 					<li class="search"><a class="fa-search" href="#search">Search</a>
 						<form id="search" method="post" action="search">
-							<input type="text" name="recherche" placeholder="Rechercher les articles" />
+							<input type="text" name="recherche"
+								placeholder="Rechercher les articles" />
 						</form></li>
 					<li class="menu"><a class="fa-bars" href="#menu">Menu</a></li>
 
@@ -69,7 +70,7 @@
 					</li>
 				</section>
 			</c:forEach>
-			
+
 			<!-- Links -->
 			<section>
 				<ul class="links">
@@ -133,7 +134,7 @@
 								alt="" /></a>
 						</div>
 					</header>
-					
+
 					<p>${ posts.get(i.count - 1).Contenu.toString().substring(1, posts.get(i.count - 1).Contenu.toString().length()-1) }</p>
 					<footer>
 						<ul class="actions">
@@ -168,75 +169,20 @@
 			<!-- Mini Posts -->
 			<section>
 				<div class="mini-posts">
-
 					<!-- Mini Post -->
-					<article class="mini-post">
-						<header>
-							<h3>
-								<a href="single.html">Vitae sed condimentum</a>
-							</h3>
-							<time class="published" datetime="2015-10-20">October 20,
-								2015</time>
-							<a href="#" class="author"><img
-								src="${pageContext.request.contextPath}/resources/images/avatar.jpg"
-								alt="" /></a>
-						</header>
-						<a href="single.html" class="image"><img
-							src="${pageContext.request.contextPath}/resources/images/pic04.jpg"
-							alt="" /></a>
-					</article>
-
-					<!-- Mini Post -->
-					<article class="mini-post">
-						<header>
-							<h3>
-								<a href="single.html">Rutrum neque accumsan</a>
-							</h3>
-							<time class="published" datetime="2015-10-19">October 19,
-								2015</time>
-							<a href="#" class="author"><img
-								src="${pageContext.request.contextPath}/resources/images/avatar.jpg"
-								alt="" /></a>
-						</header>
-						<a href="single.html" class="image"><img
-							src="${pageContext.request.contextPath}/resources/images/pic05.jpg"
-							alt="" /></a>
-					</article>
-
-					<!-- Mini Post -->
-					<article class="mini-post">
-						<header>
-							<h3>
-								<a href="single.html">Odio congue mattis</a>
-							</h3>
-							<time class="published" datetime="2015-10-18">October 18,
-								2015</time>
-							<a href="#" class="author"><img
-								src="${pageContext.request.contextPath}/resources/images/avatar.jpg"
-								alt="" /></a>
-						</header>
-						<a href="single.html" class="image"><img
-							src="${pageContext.request.contextPath}/resources/images/pic06.jpg"
-							alt="" /></a>
-					</article>
-
-					<!-- Mini Post -->
-					<article class="mini-post">
-						<header>
-							<h3>
-								<a href="single.html">Enim nisl veroeros</a>
-							</h3>
-							<time class="published" datetime="2015-10-17">October 17,
-								2015</time>
-							<a href="#" class="author"><img
-								src="${pageContext.request.contextPath}/resources/images/avatar.jpg"
-								alt="" /></a>
-						</header>
-						<a href="single.html" class="image"><img
-							src="${pageContext.request.contextPath}/resources/images/pic07.jpg"
-							alt="" /></a>
-					</article>
-
+					<c:forEach items="${ thematiques }" var="th">
+						<article class="mini-post">
+							<center>
+								<header
+									style='background-color : ${th.Color.toString().substring(1, th.Color.toString().length()-1)};'>
+									<h3>
+										<a href='http://localhost:8080/Mini-Wiki/search/${th.NomThematique.toString().substring(1, th.NomThematique.toString().length()-1)}' >${th.NomThematique}
+										</button>
+									</h3>
+								</header>
+							</center>
+						</article>
+					</c:forEach>
 				</div>
 			</section>
 
@@ -323,7 +269,8 @@
 			<!-- Footer -->
 			<section id="footer">
 				<ul class="icons">
-					<li><span class="label">Sohaib Skious : &nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a
+					<li><span class="label">Sohaib Skious :
+							&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a
 						href="https://www.facebook.com/sb.skio.01"
 						class="icon brands fa-facebook-f"></a>&nbsp;&nbsp;&nbsp;<a
 						href="https://twitter.com/b0b1n" class="icon brands fa-twitter"></a>&nbsp;&nbsp;&nbsp;<a
@@ -332,24 +279,29 @@
 						href="https://www.linkedin.com/in/sohaib-skious-3758a21a6/"
 						class="icon brands fa-linkedin"></a></li>
 					<br>
-					<li><span class="label">Youssra el-haddad : &nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a
+					<li><span class="label">Youssra el-haddad :
+							&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a
 						href="https://www.facebook.com/youssra.elhaddad.169"
 						class="icon brands fa-facebook-f"></a>&nbsp;&nbsp;&nbsp;<a
 						href="https://ma.linkedin.com/in/youssra-el-haddad-9054471a9"
 						class="icon brands fa-linkedin"></a></li>
 					<br>
-					<li><span class="label">Imane sinoun : &nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a
+					<li><span class="label">Imane sinoun :
+							&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a
 						href="https://www.linkedin.com/in/imane-sinoun-9264b3183"
 						class="icon brands fa-linkedin"></a></li>
 					<br>
-					<li><span class="label">Mohammed amine bennour : &nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a
-						href="#" class="icon solid fa-rss"></a></li>
+					<li><span class="label">Mohammed amine bennour :
+							&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a href="#"
+						class="icon solid fa-rss"></a></li>
 					<br>
-					<li><span class="label">Abdessamd erraghi : &nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a
-						href="#" class="icon solid fa-rss"></a></li>
+					<li><span class="label">Abdessamd erraghi :
+							&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a href="#"
+						class="icon solid fa-rss"></a></li>
 					<br>
-					<li><span class="label">Oussama el-boujjaadia: &nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a
-						href="#" class="icon solid fa-rss"></a></li>
+					<li><span class="label">Oussama el-boujjaadia:
+							&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a href="#"
+						class="icon solid fa-rss"></a></li>
 					<br>
 				</ul>
 				<p class="copyright">

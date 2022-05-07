@@ -31,7 +31,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/edit", "/add","/edit/*","/search" })
+@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/edit", "/add","/edit/*","/search","/search/*" })
 public class WikiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -54,11 +54,17 @@ public class WikiServlet extends HttpServlet {
 
 				// request.setAttribute("weaker", weaker);
 				String mesPosts = jc.get("http://127.0.0.1:8000/accueil");
+				String mesThematiques = jc.get("http://127.0.0.1:8000/api/them");
 
-				JsonReader reader = Json.createReader(new StringReader(mesPosts));
-				JsonArray arrJson = reader.readArray().asJsonArray();
+				JsonReader Preader = Json.createReader(new StringReader(mesPosts));
+				JsonReader Treader = Json.createReader(new StringReader(mesThematiques));
 
-				request.setAttribute("posts", arrJson);
+				JsonArray arrJson1 = Preader.readArray().asJsonArray();
+				JsonArray arrJson2 = Treader.readArray().asJsonArray();
+
+				
+				request.setAttribute("posts", arrJson1);
+				request.setAttribute("thematiques", arrJson2);
 				// System.out.println(arrJson.);
 
 				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
@@ -109,13 +115,11 @@ public class WikiServlet extends HttpServlet {
 				String mesPosts1 = jc.get("http://127.0.0.1:8000/accueil");
 
 				JsonReader reader1 = Json.createReader(new StringReader(mesPosts1));
-				JsonArray arrJson1 = reader1.readArray().asJsonArray();
+				JsonArray arrJson11 = reader1.readArray().asJsonArray();
 						
-				for(int i=0; i<arrJson1.size();i++) {
-					if(arrJson1.getJsonObject(i).getString("_id").equals(id)) {
-				//		request.setAttribute("Titre", arrJson1.getJsonObject(j).getString("Titre"));
-						request.setAttribute("post", arrJson1.getJsonObject(i));
-				//		request.setAttribute("myid", arrJson1.getJsonObject(i).getString("_id"));
+				for(int i=0; i<arrJson11.size();i++) {
+					if(arrJson11.getJsonObject(i).getString("_id").equals(id)) {
+						request.setAttribute("post", arrJson11.getJsonObject(i));
 					}
 				}
 				this.getServletContext().getRequestDispatcher("/view/ModifierPage.jsp").forward(request, response);
@@ -123,7 +127,42 @@ public class WikiServlet extends HttpServlet {
 			case "/add":
 				this.getServletContext().getRequestDispatcher("/view/AddPage.jsp").forward(request, response);
 				break;
-			
+			case "/search/*":
+				String rechA=request.getPathInfo().toString().substring(7,request.getPathInfo().length());
+
+				System.out.println(rechA);
+				String mesPostss = jc.get("http://127.0.0.1:8000/api/searchpg/"+rechA);
+				String mesThematiquess = jc.get("http://127.0.0.1:8000/api/them");
+
+				JsonReader Preaders = Json.createReader(new StringReader(mesPostss));
+				JsonReader Treaders = Json.createReader(new StringReader(mesThematiquess));
+
+				JsonArray arrJson1s = Preaders.readArray().asJsonArray();
+				JsonArray arrJson2s = Treaders.readArray().asJsonArray();
+
+				request.setAttribute("posts", arrJson1s);
+				request.setAttribute("thematiques", arrJson2s);
+				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
+
+				break;
+			case "/search":
+				String rechAA=request.getPathInfo().toString().substring(1,request.getPathInfo().length());
+
+				System.out.println(rechAA);
+				String mesPostssA = jc.get("http://127.0.0.1:8000/api/searchpg/"+rechAA);
+				String mesThematiquessA = jc.get("http://127.0.0.1:8000/api/them");
+
+				JsonReader PreadersA = Json.createReader(new StringReader(mesPostssA));
+				JsonReader TreadersA = Json.createReader(new StringReader(mesThematiquessA));
+
+				JsonArray arrJson1sA = PreadersA.readArray().asJsonArray();
+				JsonArray arrJson2sA = TreadersA.readArray().asJsonArray();
+
+				request.setAttribute("posts", arrJson1sA);
+				request.setAttribute("thematiques", arrJson2sA);
+				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
+
+				break;
 				
 
 			}
@@ -251,19 +290,22 @@ public class WikiServlet extends HttpServlet {
 				break;
 			case "/search":
 				String rech=request.getParameter("recherche");
-				System.out.println(rech);
+
+
 				String mesPosts = jc.get("http://127.0.0.1:8000/api/searchpg/"+rech);
+				String mesThematiques = jc.get("http://127.0.0.1:8000/api/them");
 
-				JsonReader reader = Json.createReader(new StringReader(mesPosts));
-				JsonArray arrJson = reader.readArray().asJsonArray();
+				JsonReader Preader = Json.createReader(new StringReader(mesPosts));
+				JsonReader Treader = Json.createReader(new StringReader(mesThematiques));
 
-				request.setAttribute("posts", arrJson);
-				// System.out.println(arrJson.);
+				JsonArray arrJson1 = Preader.readArray().asJsonArray();
+				JsonArray arrJson2 = Treader.readArray().asJsonArray();
 
+				request.setAttribute("posts", arrJson1);
+				request.setAttribute("thematiques", arrJson2);
 				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
-				// response.sendRedirect("/Front/View/index.jsp");
-				
 
+				break;
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
