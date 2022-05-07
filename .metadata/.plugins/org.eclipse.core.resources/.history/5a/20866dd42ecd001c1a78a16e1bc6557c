@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+ <form action= "them"  method="post">
+    <c:if test="${ weker != null }">
+      <input type="text" placeholder="SousThematique" name="sous" required="required"/>
+     <c:forEach items="${weker}" var="t" >
+			<c:set var = "string1" value = "${t.NomThematique}"/>
+			<c:set var = "string2" value ='${fn:length(""t.NomThematique"")}'/>
+			
+			<ul>
+			<li>
+			${string1}
+			${string2}
+			</li>
+			</ul>
+		
+    <!--   <select name="ids" >
+     	<option value="1">--Vide--</option>
+			
+			<option >${fn:substring(string1, 1,string2)}</option>-->
+			</c:forEach>
+	  </c:if>
+     
+      <input  type="color"  name="color" placeholder="color"required="required" >
+      <input type="submit" class="submit" align="center" value="Add">
+    
+      </form>     
+</body>
+</html>

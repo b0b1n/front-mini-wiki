@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+ <form action= "them"  method="post">
+    <c:if test="${ weker != null }">
+      <input type="text" placeholder="SousThematique" name="sous" required="required"/>
+     <select name="ids" >
+     	<option value="1">--Vide--</option>
+			<c:forEach items="${weker}" var="t" >
+			<option >${t.NomThematique}</option>
+			</c:forEach>
+	  </c:if>
+     
+      <input  type="color"  name="color" placeholder="color"required="required" >
+      <input type="submit" class="submit" align="center" value="Add">
+    
+      </form>     
+</body>
+</html>

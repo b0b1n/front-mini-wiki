@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@page import="java.io.StringReader"%>
+<%@page import="jakarta.json.JsonObject"%>
+<%@page import="jakarta.json.JsonReader"%>
+<%@page import="jakarta.json.Json"%>
 <!DOCTYPE HTML>
 <!--
 	Future Imperfect by HTML5 UP
@@ -27,24 +32,34 @@
 								<li><a href="#">Lorem</a></li>
 								<li><a href="#">Ipsum</a></li>
 								<li><a href="#">Feugiat</a></li>
-								<c:if test="${ weaker != null }">
-									<c:forEach items="${weaker}" var="w" >
-									 <li>
-									 <div style = color:Grey;">
-									 <b>Welcome <c:out value='${ w.username }'></c:out></b>
-									 </div>
-									 </li>
-									 <li><a href="logout">Déconnecter</a></li>
-									 </c:forEach>
-									 </c:if>
-									 <c:if test="${ weaker == null }">
-								<li><a href="register">Créer un compte</a></li>
-								<li><a href="login">Se connecter</a></li>
-								</c:if>
+								
 							</ul>
 						</nav>
+						<c:if test="${ weaker != null }">
+						<nav class="main">
+						<c:if test="${ weaker != null }">
+							<c:forEach items="${weaker}" var="w" >
+					 											 
+							   <a href="userPage" title="Page d'accueil">
+							   <span>Welcome ${ w.username.toString().substring(1, w.username.toString().length()-1) } </span>
+							   </a>
+							</c:forEach>
+							 </c:if>
+						</nav>
+						</c:if>
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
 						<nav class="main">
 							<ul>
+							<!--<c:if test="${ weaker != null }">
+							<c:forEach items="${weaker}" var="w" >
+					 		 <c:set var="string" value="${w.username}"/>  									 
+							   <li class="list-group-item"><a href="userPage" title="Page d'accueil">Welcome ${fn:substring(string, 1, 10)}</a></li> 
+							</c:forEach>
+							 </c:if>
+							-->
 								<li class="search">
 									<a class="fa-search" href="#search">Search</a>
 									<form id="search" method="get" action="#">
@@ -52,10 +67,8 @@
 									</form>
 								</li>
 								<li class="menu">
-									<a class="fa-bars" href="#menu">Menu</a>
-								</li>
-								
-								
+									<a class="fa-solid fa-user" href="#menu">Menu</a>
+								</li>	
 							</ul>
 						</nav>
 					</header>
@@ -63,14 +76,14 @@
 				<!-- Menu -->
 					<section id="menu">
 
-						<!-- Search -->
+						<!-- Search 
 							<section>
 								<form class="search" method="get" action="#">
 									<input type="text" name="query" placeholder="Search" />
 								</form>
-							</section>
+							</section>-->
 
-						<!-- Links -->
+						<!-- Links
 							<section>
 								<ul class="links">
 									<li>
@@ -98,10 +111,23 @@
 										</a>
 									</li>
 								</ul>
-							</section>
+							</section> -->
 
 						<!-- Actions -->
 							<section>
+							<c:if test="${ weaker != null }">
+								<ul class="actions stacked">
+									<li><a href="logout" class="button large fit">Déconnecter</a></li>
+								</ul>
+								<c:forEach items="${weaker}" var="w" >
+								<c:if test="${w.estAdmin.toString() eq 'true'}">	
+								<ul class="actions stacked">
+									<li><a href="them" class="button large fit">Creer Thematique</a></li>
+								</ul>
+								</c:if>
+								</c:forEach>	
+							</c:if>
+							<c:if test="${ weaker == null }">
 								<ul class="actions stacked">
 									<li><a href="register" class="button large fit">Créer un compte</a></li>
 								</ul>
@@ -109,6 +135,7 @@
 								<ul class="actions stacked">
 									<li><a href="login" class="button large fit">Se Connecter</a></li>
 								</ul>
+								</c:if>
 							</section>
 
 					</section>
