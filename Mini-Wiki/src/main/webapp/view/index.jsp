@@ -108,6 +108,14 @@
 				<c:if test="${ weaker != null }">
 					<c:forEach items="${weaker}" var="w">
 						<li><a href="logout">Se déconnecter</a></li>
+
+						<c:if test="${w.estAdmin.toString() eq 'true'}">
+
+							<li><a href="them" class="button large fit">Creer
+									Thematique</a></li>
+						</c:if>
+
+
 					</c:forEach>
 				</c:if>
 			</section>
@@ -176,8 +184,9 @@
 								<header
 									style='background-color : ${th.Color.toString().substring(1, th.Color.toString().length()-1)};'>
 									<h3>
-										<a href='http://localhost:8080/Mini-Wiki/search/${th.NomThematique.toString().substring(1, th.NomThematique.toString().length()-1)}' >${th.NomThematique}
-										</button>
+										<a
+											href='http://localhost:8080/Mini-Wiki/search/${th.NomThematique.toString().substring(1, th.NomThematique.toString().length()-1)}'>${th.NomThematique}
+											</button>
 									</h3>
 								</header>
 							</center>

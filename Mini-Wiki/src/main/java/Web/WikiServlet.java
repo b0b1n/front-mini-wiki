@@ -31,7 +31,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/edit", "/add","/edit/*","/search","/search/*" })
+@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/edit", "/add","/edit/*","/search","/them","/search/*" })
 public class WikiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -102,6 +102,14 @@ public class WikiServlet extends HttpServlet {
 				break;
 			case "/login":
 				this.getServletContext().getRequestDispatcher("/view/Login.jsp").forward(request, response);
+				break;
+			case"/them":
+				String j =	jc.get("http://127.0.0.1:8000/api/them");
+				jr = Json.createReader(new StringReader(j));
+				JsonArray weker = jr.readArray();
+				System.out.println("weker"+weker);
+				request.setAttribute("weker", weker);
+				this.getServletContext().getRequestDispatcher("/view/Thematique.jsp").forward(request, response);
 				break;
 			case "/logout":
 
@@ -190,6 +198,8 @@ public class WikiServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			JsonClient jc = new JsonClient();
+			
+			JsonReader jr;
 			switch (request.getServletPath()) {
 			case "/register":
 				System.out.println("----->" + request.getParameter("username"));
@@ -302,6 +312,62 @@ public class WikiServlet extends HttpServlet {
 			//		response.sendRedirect("/list");
 				}
 
+				break;
+			case "/them":
+				
+				if(request.getParameter("ids") != null && request.getParameter("sous") != null && request.getParameter("color") != null ) {			
+				String a =	request.getParameter("sous");
+				System.out.println(a); 
+					if((request.getParameter("ids") == "")) {
+						String aqqq =	request.getParameter("sous");
+						String and = aqqq.substring(0, 1).toUpperCase() + a.substring(1);
+						String chof = and.replaceAll(" ", "%20");
+						System.out.println("->---"+chof);
+						String jj =	jc.get("http://127.0.0.1:8000/api/them/"+chof);
+						System.out.println(jj);
+						if(jj.equals("[]")){
+						JsonObjectBuilder job = Json.createObjectBuilder();
+						job.add("NomThematique", and);
+						job.add("Color", request.getParameter("color"));
+						jc.post("http://127.0.0.1:8000/api/add", job.build().toString());
+						response.sendRedirect("them");
+						
+						}else {
+						//PrintWriter out = response.getWriter();	
+						String j =	jc.get("http://127.0.0.1:8000/api/them");
+						jr = Json.createReader(new StringReader(j));
+						JsonArray weker = jr.readArray();
+						System.out.println("weker"+weker);
+						request.setAttribute("weker", weker);
+						request.setAttribute("msg", "Thematiques already exist!");
+						this.getServletContext().getRequestDispatcher("/view/Thematique.jsp").forward(request, response);
+							}
+				}else {
+						String aqqq =	request.getParameter("sous");
+						String and = aqqq.substring(0, 1).toUpperCase() + a.substring(1);
+						String chof = and.replaceAll(" ", "%20");
+						System.out.println("->---"+chof);
+						String j =	jc.get("http://127.0.0.1:8000/api/suzie/"+chof);
+						//System.out.println(and);
+						if(j.equals("[]")){
+							JsonObjectBuilder job = Json.createObjectBuilder();
+							job.add("SousThematique", and);
+							job.add("NomThematique",request.getParameter("ids") );
+							job.add("Color", request.getParameter("color"));
+							jc.post("http://127.0.0.1:8000/api/add", job.build().toString());
+							response.sendRedirect("them");
+						}else {
+							//PrintWriter out = response.getWriter();	
+							String ja =	jc.get("http://127.0.0.1:8000/api/them");
+							jr = Json.createReader(new StringReader(ja));
+							JsonArray weker = jr.readArray();
+							System.out.println("weker"+weker);
+							request.setAttribute("weker", weker);
+							request.setAttribute("msg", "Sous Thematiques already exist!");
+							this.getServletContext().getRequestDispatcher("/view/Thematique.jsp").forward(request, response);
+						}
+					}
+				}
 				break;
 			case "/search":
 				String rech=request.getParameter("recherche");

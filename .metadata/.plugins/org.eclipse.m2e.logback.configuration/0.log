@@ -1025,3 +1025,8 @@ java.util.ConcurrentModificationException: null
 2022-05-06 23:37:25,467 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
 2022-05-06 23:37:39,034 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2022-05-06 23:37:39,035 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-07 23:05:38,585 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2022-05-07 23:05:52,483 [Worker-1: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: MiniWiki:Mini-Wiki:0.0.1-SNAPSHOT @ C:\Users\DELL\Desktop\Nouveau dossier\front\Mini-Wiki\pom.xml.
+2022-05-07 23:28:11,378 [Worker-32: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: MiniWiki:Mini-Wiki:0.0.1-SNAPSHOT @ C:\Users\DELL\Desktop\Nouveau dossier\front\Mini-Wiki\pom.xml.
+2022-05-07 23:28:11,889 [Worker-32: Building] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of Mini-Wiki
+2022-05-07 23:28:11,891 [Worker-32: Building] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for Mini-Wiki
