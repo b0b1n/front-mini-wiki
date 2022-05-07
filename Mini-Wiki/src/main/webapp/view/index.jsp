@@ -45,8 +45,8 @@
 			<nav class="main">
 				<ul>
 					<li class="search"><a class="fa-search" href="#search">Search</a>
-						<form id="search" method="get" action="#">
-							<input type="text" name="query" placeholder="Search" />
+						<form id="search" method="post" action="search">
+							<input type="text" name="recherche" placeholder="Rechercher les articles" />
 						</form></li>
 					<li class="menu"><a class="fa-bars" href="#menu">Menu</a></li>
 
@@ -69,11 +69,7 @@
 					</li>
 				</section>
 			</c:forEach>
-			<section>
-				<form class="search" method="get" action="search">
-					<input type="text" name="query" placeholder="Search" />
-				</form>
-			</section>
+			
 			<!-- Links -->
 			<section>
 				<ul class="links">
@@ -131,7 +127,7 @@
 							<p>${ posts.get(i.count - 1).Description.toString().substring(1, posts.get(i.count - 1).Description.toString().length()-1) }</p>
 						</div>
 						<div class="meta">
-							<time class="published" datetime="2015-11-01">${ posts.get(i.count - 1).created_at.toString().substring(1, posts.get(i.count - 1).created_at.toString().length()-1) }</time>
+							<time class="published" datetime="2015-11-01">${ posts.get(i.count - 1).created_at.toString().substring(1, 11) }</time>
 							<a href="#" class="author"><span class="name">Jane Doe</span><img
 								src="${pageContext.request.contextPath}/resources/images/avatar.jpg"
 								alt="" /></a>
@@ -152,12 +148,6 @@
 			</c:forEach>
 
 
-			<!-- Pagination -->
-			<ul class="actions pagination">
-				<li><a href="" class="disabled button large previous">Previous
-						Page</a></li>
-				<li><a href="#" class="button large next">Next Page</a></li>
-			</ul>
 
 		</div>
 
@@ -171,7 +161,7 @@
 					alt="" /></a>
 				<header>
 					<h2>Mini-Wiki</h2>
-					<p>à quoi ça sert l'amour?</p>
+					<p>Explorez la beauté des articles</p>
 				</header>
 			</section>
 

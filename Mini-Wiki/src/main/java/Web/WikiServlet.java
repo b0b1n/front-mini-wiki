@@ -31,7 +31,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/edit", "/add","/edit/*" })
+@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/edit", "/add","/edit/*","/search" })
 public class WikiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -123,6 +123,8 @@ public class WikiServlet extends HttpServlet {
 			case "/add":
 				this.getServletContext().getRequestDispatcher("/view/AddPage.jsp").forward(request, response);
 				break;
+			
+				
 
 			}
 		} catch (IOException | InterruptedException e) {
@@ -247,6 +249,20 @@ public class WikiServlet extends HttpServlet {
 				}
 
 				break;
+			case "/search":
+				String rech=request.getParameter("recherche");
+				System.out.println(rech);
+				String mesPosts = jc.get("http://127.0.0.1:8000/api/searchpg/"+rech);
+
+				JsonReader reader = Json.createReader(new StringReader(mesPosts));
+				JsonArray arrJson = reader.readArray().asJsonArray();
+
+				request.setAttribute("posts", arrJson);
+				// System.out.println(arrJson.);
+
+				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
+				// response.sendRedirect("/Front/View/index.jsp");
+				
 
 			}
 		} catch (InterruptedException e) {
