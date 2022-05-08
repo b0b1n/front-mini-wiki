@@ -36,7 +36,7 @@
 			<nav class="links">
 				<ul>
 					<li><a href="list">Accueil</a></li>
-					<li><a href="Thematiques">Thématiques</a></li>
+					<li><a href="#thematiques">Thématiques</a></li>
 					<li><a href="about">à propos</a></li>
 					<li><a href="Contact">Nous Contacter</a></li>
 
@@ -108,7 +108,6 @@
 				<c:if test="${ weaker != null }">
 					<c:forEach items="${weaker}" var="w">
 						<li><a href="logout">Se déconnecter</a></li>
-
 					</c:forEach>
 				</c:if>
 			</section>
@@ -129,7 +128,8 @@
 							<p>${ posts.get(i.count - 1).Description.toString().substring(1, posts.get(i.count - 1).Description.toString().length()-1) }</p>
 						</div>
 						<div class="meta">
-							<time class="published" datetime="2015-11-01">${ posts.get(i.count - 1).created_at.toString().substring(1, 11) }</time>
+							<time class="published"
+								datetime="${ posts.get(i.count - 1).created_at.toString().substring(1, 11) }">${ posts.get(i.count - 1).created_at.toString().substring(1, 11) }</time>
 							<a href="#" class="author"><span class="name">Jane Doe</span><img
 								src="${pageContext.request.contextPath}/resources/images/avatar.jpg"
 								alt="" /></a>
@@ -138,15 +138,18 @@
 
 					<p>${ posts.get(i.count - 1).Contenu.toString().substring(1, posts.get(i.count - 1).Contenu.toString().length()-1) }</p>
 					<footer>
-					<c:if test="${ weaker != null }">
-						<c:forEach items="${weaker}" var="w">
-							<c:if test="${w.EstConnecté.toString() eq 'true' && w.estAdmin.toString() eq 'false'}">
-					
-						<ul class="actions">
-							<li><a href="report?id=${ posts.get(i.count - 1).Titre.toString().substring(1, posts.get(i.count - 1).Titre.toString().length()-1) }" class="button large">Reporter</a></li>
-						</ul>
-						</c:if>
-						</c:forEach>
+						<c:if test="${ weaker != null }">
+							<c:forEach items="${weaker}" var="w">
+								<c:if
+									test="${w.EstConnecté.toString() eq 'true' && w.estAdmin.toString() eq 'false'}">
+
+									<ul class="actions">
+										<li><a
+											href="report?id=${ posts.get(i.count - 1).Titre.toString().substring(1, posts.get(i.count - 1).Titre.toString().length()-1) }"
+											class="button large">Reporter</a></li>
+									</ul>
+								</c:if>
+							</c:forEach>
 						</c:if>
 						<ul class="stats">
 							<li><a href="#" class="icon solid fa-star">${ posts.get(i.count - 1).Rating }</a></li>
@@ -198,7 +201,7 @@
 				</header>
 			</section>
 			<section>
-				<div class="mini-posts">
+				<div class="mini-posts" id="thematiques">
 					<!-- Mini Post -->
 					<c:forEach items="${ thematiques }" var="th">
 						<center>

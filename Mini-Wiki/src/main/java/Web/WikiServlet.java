@@ -31,7 +31,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage","/replist", "/edit", "/add","/edit/*","/search","/them","/report","/search/*" })
+@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/replist", "/edit",
+		"/add", "/edit/*", "/search", "/them", "/report", "/search/*" })
 public class WikiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -62,7 +63,6 @@ public class WikiServlet extends HttpServlet {
 				JsonArray arrJson1 = Preader.readArray().asJsonArray();
 				JsonArray arrJson2 = Treader.readArray().asJsonArray();
 
-				
 				request.setAttribute("posts", arrJson1);
 				request.setAttribute("thematiques", arrJson2);
 				// System.out.println(arrJson.);
@@ -90,7 +90,6 @@ public class WikiServlet extends HttpServlet {
 				JsonArray arrJson12 = Preader2.readArray().asJsonArray();
 				JsonArray arrJson22 = Treader2.readArray().asJsonArray();
 
-				
 				request.setAttribute("posts", arrJson12);
 				request.setAttribute("thematiques", arrJson22);
 				// System.out.println(arrJson.);
@@ -102,27 +101,28 @@ public class WikiServlet extends HttpServlet {
 				break;
 			case "/replist":
 				HttpSession iaas = request.getSession();
-				String mkdir = (String)iaas.getAttribute("user");
+				String mkdir = (String) iaas.getAttribute("user");
 				System.out.println("rm=" + mkdir);
 				jr = Json.createReader(new StringReader(jc.get("http://127.0.0.1:8000/api/user/" + mkdir)));
 				JsonArray re = jr.readArray();
 				System.out.println("re" + re);
 				request.setAttribute("re", re);
-				String a =	jc.get("http://127.0.0.1:8000/api/all");
-				if(a.equals("[]")) {
+				String a = jc.get("http://127.0.0.1:8000/api/all");
+				if (a.equals("[]")) {
 					request.setAttribute("msg", "No reports Found!");
 					this.getServletContext().getRequestDispatcher("/view/replist.jsp").forward(request, response);
-				}else {				
-				jr = Json.createReader(new StringReader(a));
-				JsonArray rek = jr.readArray();
-				System.out.println("rek"+rek);
-				request.setAttribute("rek", rek);
-				this.getServletContext().getRequestDispatcher("/view/replist.jsp").forward(request, response);
-				}break;	
+				} else {
+					jr = Json.createReader(new StringReader(a));
+					JsonArray rek = jr.readArray();
+					System.out.println("rek" + rek);
+					request.setAttribute("rek", rek);
+					this.getServletContext().getRequestDispatcher("/view/replist.jsp").forward(request, response);
+				}
+				break;
 			case "/login":
 				this.getServletContext().getRequestDispatcher("/view/Login.jsp").forward(request, response);
 				break;
-			case"/them":
+			case "/them":
 				HttpSession saas = request.getSession();
 				String el = (String) saas.getAttribute("user");
 //					response.getWriter().append(elm.toString());
@@ -132,16 +132,16 @@ public class WikiServlet extends HttpServlet {
 				JsonArray weaer = jr.readArray();
 				System.out.println("weaker" + weaer);
 				request.setAttribute("wer", weaer);
-				String j =	jc.get("http://127.0.0.1:8000/api/them");
+				String j = jc.get("http://127.0.0.1:8000/api/them");
 				jr = Json.createReader(new StringReader(j));
 				JsonArray weker = jr.readArray();
-				System.out.println("weker"+weker);
+				System.out.println("weker" + weker);
 				request.setAttribute("weker", weker);
 				this.getServletContext().getRequestDispatcher("/view/Thematique.jsp").forward(request, response);
 				break;
-			case"/report":
+			case "/report":
 				HttpSession paas = request.getSession();
-				String rm = (String)paas.getAttribute("user");
+				String rm = (String) paas.getAttribute("user");
 				System.out.println("rm=" + rm);
 				jr = Json.createReader(new StringReader(jc.get("http://127.0.0.1:8000/api/user/" + rm)));
 				JsonArray rep = jr.readArray();
@@ -150,7 +150,7 @@ public class WikiServlet extends HttpServlet {
 				if (request.getParameter("id") != null) {
 					String id = request.getParameter("id");
 					System.out.println("id" + id);
-					request.setAttribute("id",id);
+					request.setAttribute("id", id);
 				}
 				this.getServletContext().getRequestDispatcher("/view/report.jsp").forward(request, response);
 				break;
@@ -171,19 +171,17 @@ public class WikiServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/view/Rematch.jsp").forward(request, response);
 				break;
 			case "/edit":
-				String id = request.getPathInfo().toString().substring(1,request.getPathInfo().length());
+				String id = request.getPathInfo().toString().substring(1, request.getPathInfo().length());
 				System.out.println(id);
-				
-
 
 				// request.setAttribute("weaker", weaker);
 				String mesPosts1 = jc.get("http://127.0.0.1:8000/accueil");
 
 				JsonReader reader1 = Json.createReader(new StringReader(mesPosts1));
 				JsonArray arrJson11 = reader1.readArray().asJsonArray();
-						
-				for(int i=0; i<arrJson11.size();i++) {
-					if(arrJson11.getJsonObject(i).getString("_id").equals(id)) {
+
+				for (int i = 0; i < arrJson11.size(); i++) {
+					if (arrJson11.getJsonObject(i).getString("_id").equals(id)) {
 						request.setAttribute("post", arrJson11.getJsonObject(i));
 					}
 				}
@@ -192,11 +190,30 @@ public class WikiServlet extends HttpServlet {
 			case "/add":
 				this.getServletContext().getRequestDispatcher("/view/AddPage.jsp").forward(request, response);
 				break;
-			case "/search/*":
-				String rechA=request.getPathInfo().toString().substring(7,request.getPathInfo().length());
+//			case "/search/*":
+//				String rechA=request.getPathInfo().toString().substring(7,request.getPathInfo().length());
+//
+//				System.out.println(rechA);
+//				String mesPostss = jc.get("http://127.0.0.1:8000/api/searchpg/"+rechA);
+//				String mesThematiquess = jc.get("http://127.0.0.1:8000/api/them");
+//
+//				JsonReader Preaders = Json.createReader(new StringReader(mesPostss));
+//				JsonReader Treaders = Json.createReader(new StringReader(mesThematiquess));
+//
+//				JsonArray arrJson1s = Preaders.readArray().asJsonArray();
+//				JsonArray arrJson2s = Treaders.readArray().asJsonArray();
+//
+//				request.setAttribute("posts", arrJson1s);
+//				request.setAttribute("thematiques", arrJson2s);
+//				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
+//
+//				break;
+//				
+			case "/search":
+				String rechA = request.getPathInfo().toString().substring(7, request.getPathInfo().length());
 
 				System.out.println(rechA);
-				String mesPostss = jc.get("http://127.0.0.1:8000/api/searchpg/"+rechA);
+				String mesPostss = jc.get("http://127.0.0.1:8000/api/searchpg/" + rechA);
 				String mesThematiquess = jc.get("http://127.0.0.1:8000/api/them");
 
 				JsonReader Preaders = Json.createReader(new StringReader(mesPostss));
@@ -210,25 +227,6 @@ public class WikiServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
 
 				break;
-			case "/search":
-				String rechAA=request.getPathInfo().toString().substring(1,request.getPathInfo().length());
-
-				System.out.println(rechAA);
-				String mesPostssA = jc.get("http://127.0.0.1:8000/api/searchpg/"+rechAA);
-				String mesThematiquessA = jc.get("http://127.0.0.1:8000/api/them");
-
-				JsonReader PreadersA = Json.createReader(new StringReader(mesPostssA));
-				JsonReader TreadersA = Json.createReader(new StringReader(mesThematiquessA));
-
-				JsonArray arrJson1sA = PreadersA.readArray().asJsonArray();
-				JsonArray arrJson2sA = TreadersA.readArray().asJsonArray();
-
-				request.setAttribute("posts", arrJson1sA);
-				request.setAttribute("thematiques", arrJson2sA);
-				this.getServletContext().getRequestDispatcher("/list").forward(request, response);
-
-				break;
-				
 
 			}
 		} catch (IOException | InterruptedException e) {
@@ -241,7 +239,7 @@ public class WikiServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			JsonClient jc = new JsonClient();
-			
+
 			JsonReader jr;
 			switch (request.getServletPath()) {
 			case "/register":
@@ -275,9 +273,10 @@ public class WikiServlet extends HttpServlet {
 				if (request.getParameter("username") != null && request.getParameter("page") != null
 						&& request.getParameter("contenu") != null) {
 					PrintWriter out = response.getWriter();
-					String aqqq =	request.getParameter("page");
+					String aqqq = request.getParameter("page");
 					String chof = aqqq.replaceAll(" ", "%20");
-					String jj = jc.get("http://127.0.0.1:8000/api/rapp/" +request.getParameter("username")+"/"+ chof);
+					String jj = jc
+							.get("http://127.0.0.1:8000/api/rapp/" + request.getParameter("username") + "/" + chof);
 					System.out.println(jj);
 					if (jj.equals("[]")) {
 						JsonObjectBuilder job = Json.createObjectBuilder();
@@ -303,7 +302,7 @@ public class WikiServlet extends HttpServlet {
 							+ request.getParameter("password"));
 					System.out.println(request.getParameter("login"));
 					System.out.println("----->" + jj);
-					
+
 					if (jj.equals("")) {
 						request.setAttribute("msg", "Email or Password are wrong!");
 						this.getServletContext().getRequestDispatcher("/view/Login.jsp").forward(request, response);
@@ -364,9 +363,8 @@ public class WikiServlet extends HttpServlet {
 				break;
 			case "/edit":
 				System.out.println("toto");
-				if ( request.getParameter("Titre") != null
-						&& request.getParameter("Thematique") != null && request.getParameter("Description") != null
-						&& request.getParameter("Contenu") != null) {
+				if (request.getParameter("Titre") != null && request.getParameter("Thematique") != null
+						&& request.getParameter("Description") != null && request.getParameter("Contenu") != null) {
 					System.out.println("toto11");
 					JsonObjectBuilder job = Json.createObjectBuilder();
 					job.add("_id", request.getParameter("id"));
@@ -379,84 +377,89 @@ public class WikiServlet extends HttpServlet {
 					jc.put("http://127.0.0.1:8000/api/pages/" + request.getParameter("id"), job.build().toString());
 
 					this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
-			//		response.sendRedirect("/list");
+					// response.sendRedirect("/list");
 				}
 
 				break;
 			case "/them":
-				
-				if(request.getParameter("ids") != null && request.getParameter("sous") != null && request.getParameter("color") != null ) {			
-				String a =	request.getParameter("sous");
-				System.out.println(a); 
-					if((request.getParameter("ids") == "")) {
-						String aqqq =	request.getParameter("sous");
+
+				if (request.getParameter("ids") != null && request.getParameter("sous") != null
+						&& request.getParameter("color") != null) {
+					String a = request.getParameter("sous");
+					System.out.println(a);
+					if ((request.getParameter("ids") == "")) {
+						String aqqq = request.getParameter("sous");
 						String and = aqqq.substring(0, 1).toUpperCase() + a.substring(1);
 						String chof = and.replaceAll(" ", "%20");
-						System.out.println("->---"+chof);
-						String jj =	jc.get("http://127.0.0.1:8000/api/them/"+chof);
+						System.out.println("->---" + chof);
+						String jj = jc.get("http://127.0.0.1:8000/api/them/" + chof);
 						System.out.println(jj);
-						if(jj.equals("[]")){
-						JsonObjectBuilder job = Json.createObjectBuilder();
-						job.add("NomThematique", and);
-						job.add("Color", request.getParameter("color"));
-						jc.post("http://127.0.0.1:8000/api/add", job.build().toString());
-						response.sendRedirect("them");
-						
-						}else {
-						//PrintWriter out = response.getWriter();	
-						String j =	jc.get("http://127.0.0.1:8000/api/them");
-						jr = Json.createReader(new StringReader(j));
-						JsonArray weker = jr.readArray();
-						System.out.println("weker"+weker);
-						request.setAttribute("weker", weker);
-						request.setAttribute("msg", "Thematiques already exist!");
-						this.getServletContext().getRequestDispatcher("/view/Thematique.jsp").forward(request, response);
-							}
-				}else {
-						String aqqq =	request.getParameter("sous");
-						String and = aqqq.substring(0, 1).toUpperCase() + a.substring(1);
-						String chof = and.replaceAll(" ", "%20");
-						System.out.println("->---"+chof);
-						String j =	jc.get("http://127.0.0.1:8000/api/suzie/"+chof);
-						//System.out.println(and);
-						if(j.equals("[]")){
+						if (jj.equals("[]")) {
 							JsonObjectBuilder job = Json.createObjectBuilder();
-							job.add("SousThematique", and);
-							job.add("NomThematique",request.getParameter("ids") );
+							job.add("NomThematique", and);
 							job.add("Color", request.getParameter("color"));
 							jc.post("http://127.0.0.1:8000/api/add", job.build().toString());
 							response.sendRedirect("them");
-						}else {
-							//PrintWriter out = response.getWriter();	
-							String ja =	jc.get("http://127.0.0.1:8000/api/them");
+
+						} else {
+							// PrintWriter out = response.getWriter();
+							String j = jc.get("http://127.0.0.1:8000/api/them");
+							jr = Json.createReader(new StringReader(j));
+							JsonArray weker = jr.readArray();
+							System.out.println("weker" + weker);
+							request.setAttribute("weker", weker);
+							request.setAttribute("msg", "Thematiques already exist!");
+							this.getServletContext().getRequestDispatcher("/view/Thematique.jsp").forward(request,
+									response);
+						}
+					} else {
+						String aqqq = request.getParameter("sous");
+						String and = aqqq.substring(0, 1).toUpperCase() + a.substring(1);
+						String chof = and.replaceAll(" ", "%20");
+						System.out.println("->---" + chof);
+						String j = jc.get("http://127.0.0.1:8000/api/suzie/" + chof);
+						// System.out.println(and);
+						if (j.equals("[]")) {
+							JsonObjectBuilder job = Json.createObjectBuilder();
+							job.add("SousThematique", and);
+							job.add("NomThematique", request.getParameter("ids"));
+							job.add("Color", request.getParameter("color"));
+							jc.post("http://127.0.0.1:8000/api/add", job.build().toString());
+							response.sendRedirect("them");
+						} else {
+							// PrintWriter out = response.getWriter();
+							String ja = jc.get("http://127.0.0.1:8000/api/them");
 							jr = Json.createReader(new StringReader(ja));
 							JsonArray weker = jr.readArray();
-							System.out.println("weker"+weker);
+							System.out.println("weker" + weker);
 							request.setAttribute("weker", weker);
 							request.setAttribute("msg", "Sous Thematiques already exist!");
-							this.getServletContext().getRequestDispatcher("/view/Thematique.jsp").forward(request, response);
+							this.getServletContext().getRequestDispatcher("/view/Thematique.jsp").forward(request,
+									response);
 						}
 					}
 				}
 				break;
 			case "/search":
-				String rech=request.getParameter("recherche");
 
+				String rechA = request.getPathInfo().toString().substring(7, request.getPathInfo().length());
 
-				String mesPosts = jc.get("http://127.0.0.1:8000/api/searchpg/"+rech);
-				String mesThematiques = jc.get("http://127.0.0.1:8000/api/them");
+				System.out.println(rechA);
+				String mesPostss = jc.get("http://127.0.0.1:8000/api/searchpg/" + rechA);
+				String mesThematiquess = jc.get("http://127.0.0.1:8000/api/them");
 
-				JsonReader Preader = Json.createReader(new StringReader(mesPosts));
-				JsonReader Treader = Json.createReader(new StringReader(mesThematiques));
+				JsonReader Preaders = Json.createReader(new StringReader(mesPostss));
+				JsonReader Treaders = Json.createReader(new StringReader(mesThematiquess));
 
-				JsonArray arrJson1 = Preader.readArray().asJsonArray();
-				JsonArray arrJson2 = Treader.readArray().asJsonArray();
-
-				request.setAttribute("posts", arrJson1);
-				request.setAttribute("thematiques", arrJson2);
+				JsonArray arrJson1s = Preaders.readArray().asJsonArray();
+				JsonArray arrJson2s = Treaders.readArray().asJsonArray();
+				
+				request.setAttribute("posts", arrJson1s);
+				request.setAttribute("thematiques", arrJson2s);
 				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
 
 				break;
+
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
