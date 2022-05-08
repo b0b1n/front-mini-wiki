@@ -36,7 +36,7 @@
 			<nav class="links">
 				<ul>
 					<li><a href="list">Accueil</a></li>
-					<li><a href="Thematiques">Thématiques</a></li>
+					<li><a href="#thematiques">Thématiques</a></li>
 					<li><a href="about">à propos</a></li>
 					<li><a href="Contact">Nous Contacter</a></li>
 
@@ -191,7 +191,7 @@
 				</header>
 			</section>
 			<section>
-				<div class="mini-posts">
+				<div class="mini-posts" id="thematiques">
 					<!-- Mini Post -->
 					<c:forEach items="${ thematiques }" var="th">
 						<center>
