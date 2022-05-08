@@ -108,6 +108,7 @@
 				<c:if test="${ weaker != null }">
 					<c:forEach items="${weaker}" var="w">
 						<li><a href="logout">Se déconnecter</a></li>
+
 					</c:forEach>
 				</c:if>
 			</section>
@@ -137,10 +138,16 @@
 
 					<p>${ posts.get(i.count - 1).Contenu.toString().substring(1, posts.get(i.count - 1).Contenu.toString().length()-1) }</p>
 					<footer>
+					<c:if test="${ weaker != null }">
+						<c:forEach items="${weaker}" var="w">
+							<c:if test="${w.EstConnecté.toString() eq 'true' && w.estAdmin.toString() eq 'false'}">
+					
 						<ul class="actions">
-							<li><a href="single.html" class="button large">Continue
-									Reading</a></li>
+							<li><a href="report?id=${ posts.get(i.count - 1).Titre.toString().substring(1, posts.get(i.count - 1).Titre.toString().length()-1) }" class="button large">Reporter</a></li>
 						</ul>
+						</c:if>
+						</c:forEach>
+						</c:if>
 						<ul class="stats">
 							<li><a href="#" class="icon solid fa-star">${ posts.get(i.count - 1).Rating }</a></li>
 						</ul>
