@@ -108,14 +108,6 @@
 				<c:if test="${ weaker != null }">
 					<c:forEach items="${weaker}" var="w">
 						<li><a href="logout">Se déconnecter</a></li>
-
-						<c:if test="${w.estAdmin.toString() eq 'true'}">
-
-							<li><a href="them" class="button large fit">Creer
-									Thematique</a></li>
-						</c:if>
-
-
 					</c:forEach>
 				</c:if>
 			</section>
@@ -165,115 +157,58 @@
 
 			<!-- Intro -->
 			<section id="intro">
-				<a href="#" class="logo"><img
-					src="${pageContext.request.contextPath}/resources/images/logo.jpg"
-					alt="" /></a>
+				<center>
+					<a href="#" class="logo"><img
+						src="${pageContext.request.contextPath}/resources/images/logo.jpg"
+						alt="" /></a>
+					<header>
+						<h2>Mini-Wiki</h2>
+						<p>Explorez la beauté des articles</p>
+					</header>
+				</center>
+			</section>
+			<!-- Mini Posts -->
+			<section style="background-color: #ecc69e; padding: 5%;">
 				<header>
-					<h2>Mini-Wiki</h2>
-					<p>Explorez la beauté des articles</p>
+					<center>
+						<h2>
+							Présentation</br> Mini-Wiki
+						</h2>
+					</center>
+					<p style="text-align: justify; text-justify: inter-word;">MiniWiki
+						est une application développer avec deux technologies différentes
+						Laravel pour le backend et JEE pour le frontend par un groupe
+						d'étudiants du Master Ingénierie Informatique de la Faculté des
+						Sciences Ain Chock qui permet de parcourir un ensemble d'articles
+						sur les différents thématiques.</p>
+					<p style="text-align: justify; text-justify: inter-word;">L'application
+						MiniWiki est l'une des applications les plus faciles à utiliser
+						mais avec un style totalement diffèrent de Wikipédia. Notre app
+						MiniWiki prend en charge des fonctionnalités telles que la
+						recherche des articles Cela renverra une liste de tous les
+						articles qui se rapportent à votre recherche tout en donnant la
+						possibilité de consulter le rating des articles.</p>
 				</header>
 			</section>
-
-			<!-- Mini Posts -->
 			<section>
 				<div class="mini-posts">
 					<!-- Mini Post -->
 					<c:forEach items="${ thematiques }" var="th">
-						<article class="mini-post">
-							<center>
+						<center>
+							<article class="mini-post">
 								<header
 									style='background-color : ${th.Color.toString().substring(1, th.Color.toString().length()-1)};'>
 									<h3>
 										<a
 											href='http://localhost:8080/Mini-Wiki/search/${th.NomThematique.toString().substring(1, th.NomThematique.toString().length()-1)}'>${th.NomThematique}
-											</button>
+										</a>
 									</h3>
 								</header>
-							</center>
-						</article>
+							</article>
+						</center>
 					</c:forEach>
 				</div>
 			</section>
-
-			<!-- Posts List -->
-			<section>
-				<ul class="posts">
-					<li>
-						<article>
-							<header>
-								<h3>
-									<a href="single.html">Lorem ipsum fermentum ut nisl vitae</a>
-								</h3>
-								<time class="published" datetime="2015-10-20">October 20,
-									2015</time>
-							</header>
-							<a href="single.html" class="image"><img
-								src="${pageContext.request.contextPath}/resources/images/pic08.jpg"
-								alt="" /></a>
-						</article>
-					</li>
-					<li>
-						<article>
-							<header>
-								<h3>
-									<a href="single.html">Convallis maximus nisl mattis nunc id
-										lorem</a>
-								</h3>
-								<time class="published" datetime="2015-10-15">October 15,
-									2015</time>
-							</header>
-							<a href="single.html" class="image"><img
-								src="${pageContext.request.contextPath}/resources/images/pic09.jpg"
-								alt="" /></a>
-						</article>
-					</li>
-					<li>
-						<article>
-							<header>
-								<h3>
-									<a href="single.html">Euismod amet placerat vivamus
-										porttitor</a>
-								</h3>
-								<time class="published" datetime="2015-10-10">October 10,
-									2015</time>
-							</header>
-							<a href="single.html" class="image"><img
-								src="${pageContext.request.contextPath}/resources/images/pic10.jpg"
-								alt="" /></a>
-						</article>
-					</li>
-					<li>
-						<article>
-							<header>
-								<h3>
-									<a href="single.html">Magna enim accumsan tortor cursus
-										ultricies</a>
-								</h3>
-								<time class="published" datetime="2015-10-08">October 8,
-									2015</time>
-							</header>
-							<a href="single.html" class="image"><img
-								src="${pageContext.request.contextPath}/resources/images/pic11.jpg"
-								alt="" /></a>
-						</article>
-					</li>
-					<li>
-						<article>
-							<header>
-								<h3>
-									<a href="single.html">Congue ullam corper lorem ipsum dolor</a>
-								</h3>
-								<time class="published" datetime="2015-10-06">October 7,
-									2015</time>
-							</header>
-							<a href="single.html" class="image"><img
-								src="${pageContext.request.contextPath}/resources/images/pic12.jpg"
-								alt="" /></a>
-						</article>
-					</li>
-				</ul>
-			</section>
-
 
 			<!-- Footer -->
 			<section id="footer">
