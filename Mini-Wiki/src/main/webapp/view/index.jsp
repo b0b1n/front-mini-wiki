@@ -107,6 +107,13 @@
 				</c:if>
 				<c:if test="${ weaker != null }">
 					<c:forEach items="${weaker}" var="w">
+						<c:if test="${w.EstConnecté.toString() eq 'true' && w.estAdmin.toString() eq 'true'}">
+						<li><a href="replist">Listes des reports</a></li>
+						</c:if>
+					</c:forEach>
+				</c:if>
+				<c:if test="${ weaker != null }">
+					<c:forEach items="${weaker}" var="w">
 						<li><a href="logout">Se déconnecter</a></li>
 					</c:forEach>
 				</c:if>
