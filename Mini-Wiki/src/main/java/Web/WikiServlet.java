@@ -31,7 +31,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/edit", "/add","/edit/*","/search","/them","/search/*" })
+@WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage","/replist", "/edit", "/add","/edit/*","/search","/them","/report","/search/*" })
 public class WikiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -100,16 +100,59 @@ public class WikiServlet extends HttpServlet {
 			case "/register":
 				this.getServletContext().getRequestDispatcher("/view/Register.jsp").forward(request, response);
 				break;
+			case "/replist":
+				HttpSession iaas = request.getSession();
+				String mkdir = (String)iaas.getAttribute("user");
+				System.out.println("rm=" + mkdir);
+				jr = Json.createReader(new StringReader(jc.get("http://127.0.0.1:8000/api/user/" + mkdir)));
+				JsonArray re = jr.readArray();
+				System.out.println("re" + re);
+				request.setAttribute("re", re);
+				String a =	jc.get("http://127.0.0.1:8000/api/all");
+				if(a.equals("[]")) {
+					request.setAttribute("msg", "No reports Found!");
+					this.getServletContext().getRequestDispatcher("/view/replist.jsp").forward(request, response);
+				}else {				
+				jr = Json.createReader(new StringReader(a));
+				JsonArray rek = jr.readArray();
+				System.out.println("rek"+rek);
+				request.setAttribute("rek", rek);
+				this.getServletContext().getRequestDispatcher("/view/replist.jsp").forward(request, response);
+				}break;	
 			case "/login":
 				this.getServletContext().getRequestDispatcher("/view/Login.jsp").forward(request, response);
 				break;
 			case"/them":
+				HttpSession saas = request.getSession();
+				String el = (String) saas.getAttribute("user");
+//					response.getWriter().append(elm.toString());
+				System.out.println("el=" + el);
+
+				jr = Json.createReader(new StringReader(jc.get("http://127.0.0.1:8000/api/user/" + el)));
+				JsonArray weaer = jr.readArray();
+				System.out.println("weaker" + weaer);
+				request.setAttribute("wer", weaer);
 				String j =	jc.get("http://127.0.0.1:8000/api/them");
 				jr = Json.createReader(new StringReader(j));
 				JsonArray weker = jr.readArray();
 				System.out.println("weker"+weker);
 				request.setAttribute("weker", weker);
 				this.getServletContext().getRequestDispatcher("/view/Thematique.jsp").forward(request, response);
+				break;
+			case"/report":
+				HttpSession paas = request.getSession();
+				String rm = (String)paas.getAttribute("user");
+				System.out.println("rm=" + rm);
+				jr = Json.createReader(new StringReader(jc.get("http://127.0.0.1:8000/api/user/" + rm)));
+				JsonArray rep = jr.readArray();
+				System.out.println("rep" + rep);
+				request.setAttribute("rep", rep);
+				if (request.getParameter("id") != null) {
+					String id = request.getParameter("id");
+					System.out.println("id" + id);
+					request.setAttribute("id",id);
+				}
+				this.getServletContext().getRequestDispatcher("/view/report.jsp").forward(request, response);
 				break;
 			case "/logout":
 
@@ -224,6 +267,33 @@ public class WikiServlet extends HttpServlet {
 //						out.println("");
 						request.setAttribute("msg", "Email already exist!");
 						this.getServletContext().getRequestDispatcher("/view/Register.jsp").forward(request, response);
+					}
+				}
+				break;
+			case "/report":
+				System.out.println("----->" + request.getParameter("page"));
+				if (request.getParameter("username") != null && request.getParameter("page") != null
+						&& request.getParameter("contenu") != null) {
+					PrintWriter out = response.getWriter();
+					String aqqq =	request.getParameter("page");
+					String chof = aqqq.replaceAll(" ", "%20");
+					String jj = jc.get("http://127.0.0.1:8000/api/rapp/" +request.getParameter("username")+"/"+ chof);
+					System.out.println(jj);
+					if (jj.equals("[]")) {
+						JsonObjectBuilder job = Json.createObjectBuilder();
+						job.add("Utilisateur", request.getParameter("username"));
+						job.add("Page", request.getParameter("page"));
+						job.add("Contenu", request.getParameter("contenu"));
+						jc.post("http://127.0.0.1:8000/api/rapp", job.build().toString());
+						request.setAttribute("msg", "Reported");
+						this.getServletContext().getRequestDispatcher("/view/report.jsp").forward(request, response);
+					} else {
+//					PrintWriter out = response.getWriter();			
+//					//out.println("");
+//					request.setAttribute("msg", "empty inputs!");
+//						out.println("");
+						request.setAttribute("msg", "You have reported this page");
+						this.getServletContext().getRequestDispatcher("/view/report.jsp").forward(request, response);
 					}
 				}
 				break;
