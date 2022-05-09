@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = { "/list", "/login", "/register", "/logout", "/rewatch", "/userPage", "/replist", "/edit",
-		"/add", "/edit/*", "/search", "/them", "/report", "/search/*" })
+		"/add", "/edit/*", "/search", "/them", "/report", "/search/*" , "/contact" , "/about","/getUser","/search1"})
 public class WikiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -190,25 +190,25 @@ public class WikiServlet extends HttpServlet {
 			case "/add":
 				this.getServletContext().getRequestDispatcher("/view/AddPage.jsp").forward(request, response);
 				break;
-//			case "/search/*":
-//				String rechA=request.getPathInfo().toString().substring(7,request.getPathInfo().length());
-//
-//				System.out.println(rechA);
-//				String mesPostss = jc.get("http://127.0.0.1:8000/api/searchpg/"+rechA);
-//				String mesThematiquess = jc.get("http://127.0.0.1:8000/api/them");
-//
-//				JsonReader Preaders = Json.createReader(new StringReader(mesPostss));
-//				JsonReader Treaders = Json.createReader(new StringReader(mesThematiquess));
-//
-//				JsonArray arrJson1s = Preaders.readArray().asJsonArray();
-//				JsonArray arrJson2s = Treaders.readArray().asJsonArray();
-//
-//				request.setAttribute("posts", arrJson1s);
-//				request.setAttribute("thematiques", arrJson2s);
-//				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
-//
-//				break;
-//				
+			case "/search1":
+				String rechAq=request.getParameter("recherche");
+
+				System.out.println(rechAq);
+				String mesPostssq = jc.get("http://127.0.0.1:8000/api/searchpg/"+rechAq);
+				String mesThematiquessq = jc.get("http://127.0.0.1:8000/api/them");
+
+				JsonReader Preadersm = Json.createReader(new StringReader(mesPostssq));
+				JsonReader Treadersm = Json.createReader(new StringReader(mesThematiquessq));
+
+				JsonArray arrJson1s2 = Preadersm.readArray().asJsonArray();
+				JsonArray arrJson2s2 = Treadersm.readArray().asJsonArray();
+
+				request.setAttribute("posts", arrJson1s2);
+				request.setAttribute("thematiques", arrJson2s2);
+				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
+
+				break;
+				
 			case "/search":
 				String rechA = request.getPathInfo().toString().substring(7, request.getPathInfo().length());
 
@@ -227,12 +227,41 @@ public class WikiServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/view/index.jsp").forward(request, response);
 
 				break;
-
+			case "/about":
+				this.getServletContext().getRequestDispatcher("/view/About.jsp").forward(request, response);
+				break;
+			case "/contact":
+				this.getServletContext().getRequestDispatcher("/view/Contact.jsp").forward(request, response);
+				break;
+			case "/getUser":
+				
+				HttpSession Caas = request.getSession();
+				String rmdir = (String)Caas.getAttribute("user");
+				System.out.println("rm=" + rmdir);
+				jr = Json.createReader(new StringReader(jc.get("http://127.0.0.1:8000/api/user/" + rmdir)));
+				JsonArray rea = jr.readArray();
+				System.out.println("re" + rea);
+				request.setAttribute("rae", rea);
+				String ab =	jc.get("http://127.0.0.1:8000/api/getuser");
+				if(ab.equals("[]")) {
+					request.setAttribute("msg", "No users Found!");
+					this.getServletContext().getRequestDispatcher("/view/ListUser.jsp").forward(request, response);
+				}else {				
+				jr = Json.createReader(new StringReader(ab));
+				JsonArray rickk = jr.readArray();
+				System.out.println("rick"+rickk);
+				request.setAttribute("rick", rickk);
+				this.getServletContext().getRequestDispatcher("/view/ListUser.jsp").forward(request, response);
+				}
+				break;
+				
+				
 			}
 		} catch (IOException | InterruptedException e) {
 
 			e.printStackTrace();
 		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
