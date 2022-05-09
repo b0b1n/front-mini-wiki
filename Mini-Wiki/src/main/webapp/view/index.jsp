@@ -38,14 +38,14 @@
 					<li><a href="list">Accueil</a></li>
 					<li><a href="#thematiques">Thématiques</a></li>
 					<li><a href="about">à propos</a></li>
-					<li><a href="Contact">Nous Contacter</a></li>
-
+					<li><a href="contact">Nous Contacter</a></li>
+				   
 				</ul>
 			</nav>
 			<nav class="main">
 				<ul>
 					<li class="search"><a class="fa-search" href="#search">Search</a>
-						<form id="search" method="post" action="search">
+						<form id="search" method="get" action="search1">
 							<input type="text" name="recherche"
 								placeholder="Rechercher les articles" />
 						</form></li>
@@ -82,11 +82,11 @@
 							<h3>à propos</h3>
 							<p>Savoir qui sommes-nous.</p>
 					</a></li>
-					<li><a href="thematiques">
+					<li><a href="#thematiques">
 							<h3>Thématiques</h3>
 							<p>Voir les thématiques existantes.</p>
 					</a></li>
-					<li><a href="#">
+					<li><a href="contact">
 							<h3>Nous contacter</h3>
 							<p>Liens et informations pour le contact.</p>
 					</a></li>
@@ -107,11 +107,14 @@
 				</c:if>
 				<c:if test="${ weaker != null }">
 					<c:forEach items="${weaker}" var="w">
+				${ w.estAdmin.toString() }
 						<c:if test="${w.EstConnecté.toString() eq 'true' && w.estAdmin.toString() eq 'true'}">
 						<li><a href="replist">Listes des reports</a></li>
+						<li><a href="getUser">Listes des utilisateurs</a></li>
 						</c:if>
 					</c:forEach>
 				</c:if>
+				
 				<c:if test="${ weaker != null }">
 					<c:forEach items="${weaker}" var="w">
 						<li><a href="logout">Se déconnecter</a></li>
