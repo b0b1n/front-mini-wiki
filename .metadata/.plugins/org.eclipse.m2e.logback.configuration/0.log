@@ -1036,3 +1036,59 @@ java.util.ConcurrentModificationException: null
 2022-05-08 13:28:54,334 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2022-05-09 00:13:04,483 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
 2022-05-09 00:13:19,268 [Worker-9: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: MiniWiki:Mini-Wiki:0.0.1-SNAPSHOT @ C:\Users\DELL\Desktop\Nouveau dossier\front\Mini-Wiki\pom.xml.
+2022-05-09 12:06:45,897 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2022-05-09 12:06:49,574 [Worker-8: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: MiniWiki:Mini-Wiki:0.0.1-SNAPSHOT @ C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\pom.xml.
+2022-05-09 12:06:49,575 [Worker-0: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: MiniWiki:Mini-Wiki:0.0.1-SNAPSHOT @ C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\pom.xml.
+2022-05-09 12:06:51,976 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:06:51,976 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 12:06:51,979 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:06:51,980 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
+2022-05-09 12:06:53,365 [Worker-8: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: MiniWiki:Mini-Wiki:0.0.1-SNAPSHOT @ C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\pom.xml.
+2022-05-09 12:06:56,384 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:06:56,384 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 12:06:56,388 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:06:56,388 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
+2022-05-09 12:06:59,542 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:06:59,543 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 12:06:59,545 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:06:59,545 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
+2022-05-09 12:07:30,813 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:07:30,814 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 12:07:30,817 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:07:30,817 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
+2022-05-09 12:32:23,517 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:32:23,517 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 12:32:23,519 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:32:23,519 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
+2022-05-09 12:36:47,645 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:36:47,646 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 12:36:47,648 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:36:47,648 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
+2022-05-09 12:37:35,001 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:37:35,002 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 12:37:35,004 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 12:37:35,004 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
+2022-05-09 13:05:40,809 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 13:05:40,810 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 13:05:40,855 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 13:05:40,855 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
+2022-05-09 13:23:29,200 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 13:23:29,201 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 13:23:29,210 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 13:23:29,211 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
+2022-05-09 13:24:13,424 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 13:24:13,424 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 13:24:13,425 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 13:24:13,425 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
+2022-05-09 13:25:04,846 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 13:25:04,846 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 13:25:04,848 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 13:25:04,848 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
+2022-05-09 13:25:32,863 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 13:25:32,863 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 13:25:32,865 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 13:25:32,865 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources
+2022-05-09 13:26:03,469 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 13:26:03,470 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\main\resources
+2022-05-09 13:26:03,471 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-09 13:26:03,472 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrateur\Desktop\Mini-Wiki\Front\Mini-Wiki\src\test\resources

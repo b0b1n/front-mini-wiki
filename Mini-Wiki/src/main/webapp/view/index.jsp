@@ -35,7 +35,7 @@
 			</h1>
 			<nav class="links">
 				<ul>
-					<li><a href="list">Accueil</a></li>
+					<li><a href="http://localhost:8080/Mini-Wiki/list">Accueil</a></li>
 					<li><a href="#thematiques">Thématiques</a></li>
 					<li><a href="about">à propos</a></li>
 					<li><a href="contact">Nous Contacter</a></li>
@@ -74,7 +74,7 @@
 			<!-- Links -->
 			<section>
 				<ul class="links">
-					<li><a href="list">
+					<li><a href="http://localhost:8080/Mini-Wiki/list">
 							<h3>Accueil</h3>
 							<p>Accéder à la page d'accueil.</p>
 					</a></li>
@@ -111,6 +111,7 @@
 						<c:if test="${w.EstConnecté.toString() eq 'true' && w.estAdmin.toString() eq 'true'}">
 						<li><a href="replist">Listes des reports</a></li>
 						<li><a href="getUser">Listes des utilisateurs</a></li>
+						<li><a href="them">Ajouter Thematique</a></li>
 						</c:if>
 					</c:forEach>
 				</c:if>
@@ -163,6 +164,7 @@
 						</c:if>
 						<ul class="stats">
 							<li><a href="#" class="icon solid fa-star">${ posts.get(i.count - 1).Rating }</a></li>
+							<li><a href="report" >Reporter l'article</a></li>
 						</ul>
 					</footer>
 				</article>

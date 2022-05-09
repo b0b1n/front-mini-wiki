@@ -306,7 +306,7 @@ public class WikiServlet extends HttpServlet {
 					String chof = aqqq.replaceAll(" ", "%20");
 					String jj = jc
 							.get("http://127.0.0.1:8000/api/rapp/" + request.getParameter("username") + "/" + chof);
-					System.out.println(jj);
+					System.out.println("TWTWT"+jj);
 					if (jj.equals("[]")) {
 						JsonObjectBuilder job = Json.createObjectBuilder();
 						job.add("Utilisateur", request.getParameter("username"));

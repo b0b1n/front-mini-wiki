@@ -148,7 +148,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="list">Accueil</a>
+          <a class="nav-link active" aria-current="page" href="http://localhost:8080/Mini-Wiki/list">Accueil</a>
         </li>
       </ul>
    </div>
